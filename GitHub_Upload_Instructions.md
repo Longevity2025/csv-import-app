@@ -1,55 +1,94 @@
-# Instructions to Add This App to Your GitHub Repository
+# How to Deploy Your App to GitHub Pages
 
-## Overview
-You have a monorepo structure with multiple apps as subdirectories. This guide shows you how to add your third app to the existing `mobility-age-app` repository.
+## Step 1: Create the Workflow File on GitHub
 
-## Steps
+1. Go to your repository: https://github.com/Longevity2025/csv-import-app
 
-### 1. Navigate to your local repository folder
-Open Terminal/Command Prompt and go to where you cloned `mobility-age-app`:
+2. Click **"Add file"** → **"Create new file"**
 
-```bash
-cd path/to/mobility-age-app
+3. In the filename box, type exactly: `.github/workflows/deploy.yml`
+   (This will automatically create the folders)
+
+4. Copy and paste this entire content into the file:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
 
-### 2. Create a new folder for this app
-Choose a descriptive name (e.g., `csv-import-app` or `data-manager`):
+5. Click **"Commit changes"**
 
-```bash
-mkdir csv-import-app
-cd csv-import-app
-```
+## Step 2: Enable GitHub Pages
 
-### 3. Copy all files from Bolt
-Download your Bolt project as a ZIP:
-- In Bolt, click the menu (top-right)
-- Select "Download as ZIP"
-- Extract the ZIP
-- Copy ALL contents into your `csv-import-app` folder
+1. In your repository, go to **Settings** (top menu)
 
-### 4. Add the `.env` file
-Create a `.env` file inside `csv-import-app/` with:
+2. Click **"Pages"** in the left sidebar
 
-```
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+3. Under **"Source"**, select **"GitHub Actions"** from the dropdown
 
-**IMPORTANT:** Make sure `.env` is in your `.gitignore` (it should already be there)
+4. Click **Save**
 
-### 5. Commit and push
+## Step 3: Trigger Deployment
 
-```bash
-cd ..  # Go back to repository root
-git add csv-import-app/
-git commit -m "Add CSV import app"
-git push origin main
-```
+The workflow will run automatically after you commit the file. You can check progress:
 
-## Result
-Your repository will now have three apps:
-- `mobility-age/`
-- `ymca-3mst/`
-- `csv-import-app/` (or whatever you named it)
+1. Go to the **"Actions"** tab in your repository
+2. You'll see the workflow running
+3. Once complete (green checkmark), your site will be live at:
 
-Each app can be deployed independently from its own subdirectory.
+**https://longevity2025.github.io/csv-import-app/**
+
+---
+
+That's it! Any future changes you push to the main branch will automatically redeploy.
