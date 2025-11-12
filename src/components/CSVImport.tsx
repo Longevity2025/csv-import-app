@@ -100,7 +100,8 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
 
           if (error) {
             console.error('Insert error:', error);
-            errors.push(`Failed to import ${row.name_full}: ${error.message}`);
+            console.error('Error details:', JSON.stringify(error, null, 2));
+            errors.push(`Failed to import ${row.name_full}: ${error.message} (${error.code || 'unknown code'}) ${error.hint || ''}`);
           } else {
             success.push(1);
           }
