@@ -55,11 +55,13 @@ Deno.serve(async (req: Request) => {
         vo2_mlkgmin: assessment.vo2_mlkgmin,
         sitreach_in: assessment.sitreach_in,
         mtp_pct: assessment.mtp_pct,
+        mip_pct: assessment.mip_pct,
         grip_r_pct: assessment.grip_r_pct,
         grip_l_pct: assessment.grip_l_pct,
         sway_r_pct: assessment.sway_r_pct,
         sway_l_pct: assessment.sway_l_pct,
         mobility_age: assessment.mobility_age,
+        user_id_csv: assessment.user_id_csv,
         user_id: user.id,
       });
 
