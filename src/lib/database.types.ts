@@ -13,12 +13,12 @@ export interface Database {
         Row: {
           id: string
           timestamp_local: string
-          app_version: string
+          app_version: string | null
           name_full: string
-          tester: string
-          location: string
-          sex: string
-          age: number
+          tester: string | null
+          location: string | null
+          sex: string | null
+          age: number | null
           tug_s: number | null
           vo2_mlkgmin: number | null
           sitreach_in: number | null
@@ -29,17 +29,17 @@ export interface Database {
           sway_l_pct: number | null
           mobility_age: number | null
           user_id: string
-          created_at: string | null
+          created_at: string
         }
         Insert: {
           id?: string
           timestamp_local: string
-          app_version?: string
+          app_version?: string | null
           name_full: string
-          tester?: string
-          location?: string
-          sex: string
-          age: number
+          tester?: string | null
+          location?: string | null
+          sex?: string | null
+          age?: number | null
           tug_s?: number | null
           vo2_mlkgmin?: number | null
           sitreach_in?: number | null
@@ -50,17 +50,17 @@ export interface Database {
           sway_l_pct?: number | null
           mobility_age?: number | null
           user_id: string
-          created_at?: string | null
+          created_at?: string
         }
         Update: {
           id?: string
           timestamp_local?: string
-          app_version?: string
+          app_version?: string | null
           name_full?: string
-          tester?: string
-          location?: string
-          sex?: string
-          age?: number
+          tester?: string | null
+          location?: string | null
+          sex?: string | null
+          age?: number | null
           tug_s?: number | null
           vo2_mlkgmin?: number | null
           sitreach_in?: number | null
@@ -71,9 +71,18 @@ export interface Database {
           sway_l_pct?: number | null
           mobility_age?: number | null
           user_id?: string
-          created_at?: string | null
+          created_at?: string
         }
       }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
     }
   }
 }
