@@ -90,17 +90,23 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
             user_id: user!.id,
           };
 
+          console.log('Inserting assessment data:', assessmentData);
+
           const { data, error } = await supabase
             .from('assessments')
             .insert(assessmentData);
 
+          console.log('Insert result:', { data, error });
+
           if (error) {
+            console.error('Insert error:', error);
             errors.push(`Failed to import ${row.name_full}: ${error.message}`);
           } else {
             success.push(1);
           }
         } catch (err) {
-          errors.push(`Invalid data for ${row.name_full}: ${err}`);
+          console.error('Catch error:', err);
+          errors.push(`Invalid data for ${row.name_full}: ${err instanceof Error ? err.message : String(err)}`);
         }
       }
 
