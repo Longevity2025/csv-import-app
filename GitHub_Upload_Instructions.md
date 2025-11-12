@@ -1,4 +1,4 @@
-# How to Deploy Your App to GitHub Pages
+# How to Deploy Your App to GitHub Pages 
 
 ## Step 1: Create the Workflow File on GitHub
 
