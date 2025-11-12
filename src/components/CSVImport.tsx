@@ -90,22 +90,12 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
             user_id: user!.id,
           };
 
-          const session = await supabase.auth.getSession();
-          const response = await fetch(
-            `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/import-assessment`,
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${session.data.session?.access_token}`,
-              },
-              body: JSON.stringify(assessmentData)
-            }
-          );
+          const { data, error } = await supabase
+            .from('assessments')
+            .insert(assessmentData);
 
-          if (!response.ok) {
-            const errorText = await response.text();
-            errors.push(`Failed to import ${row.name_full}: ${errorText}`);
+          if (error) {
+            errors.push(`Failed to import ${row.name_full}: ${error.message}`);
           } else {
             success.push(1);
           }
