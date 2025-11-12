@@ -70,24 +70,24 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
 
       for (const row of rows) {
         try {
-          const { error } = await supabase.from('assessments').insert({
-            timestamp_local: row.timestamp_local,
-            app_version: row.app_version,
-            name_full: row.name_full,
-            tester: row.tester,
-            location: row.location,
-            sex: row.sex,
-            age: parseInt(row.age),
-            tug_s: row.tug_s ? parseFloat(row.tug_s) : null,
-            vo2_mlkgmin: row.vo2_mlkgmin ? parseFloat(row.vo2_mlkgmin) : null,
-            sitreach_in: row.sitreach_in ? parseFloat(row.sitreach_in) : null,
-            mtp_pct: row.mtp_pct ? parseFloat(row.mtp_pct) : null,
-            grip_r_pct: row.grip_r_pct ? parseFloat(row.grip_r_pct) : null,
-            grip_l_pct: row.grip_l_pct ? parseFloat(row.grip_l_pct) : null,
-            sway_r_pct: row.sway_r_pct ? parseFloat(row.sway_r_pct) : null,
-            sway_l_pct: row.sway_l_pct ? parseFloat(row.sway_l_pct) : null,
-            mobility_age: row.mobility_age ? parseFloat(row.mobility_age) : null,
-            user_id: user!.id,
+          const { error } = await supabase.rpc('insert_assessment', {
+            p_timestamp_local: row.timestamp_local,
+            p_app_version: row.app_version || '',
+            p_name_full: row.name_full,
+            p_tester: row.tester || '',
+            p_location: row.location || '',
+            p_sex: row.sex,
+            p_age: parseInt(row.age),
+            p_tug_s: row.tug_s ? parseFloat(row.tug_s) : null,
+            p_vo2_mlkgmin: row.vo2_mlkgmin ? parseFloat(row.vo2_mlkgmin) : null,
+            p_sitreach_in: row.sitreach_in ? parseFloat(row.sitreach_in) : null,
+            p_mtp_pct: row.mtp_pct ? parseFloat(row.mtp_pct) : null,
+            p_grip_r_pct: row.grip_r_pct ? parseFloat(row.grip_r_pct) : null,
+            p_grip_l_pct: row.grip_l_pct ? parseFloat(row.grip_l_pct) : null,
+            p_sway_r_pct: row.sway_r_pct ? parseFloat(row.sway_r_pct) : null,
+            p_sway_l_pct: row.sway_l_pct ? parseFloat(row.sway_l_pct) : null,
+            p_mobility_age: row.mobility_age ? parseFloat(row.mobility_age) : null,
+            p_user_id: user!.id,
           });
 
           if (error) {
