@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { Database } from '../lib/database.types';
-import { Search, Filter, ArrowUpDown, LogOut, Activity, Download } from 'lucide-react';
+import { Search, Filter, ArrowUpDown, LogOut, Activity, Download, Trash2 } from 'lucide-react';
 import { CSVImport } from './CSVImport';
 
 type Assessment = Database['public']['Tables']['assessments']['Row'];
@@ -111,6 +111,24 @@ export function Dashboard() {
 
     const timestamp = new Date().toISOString().split('T')[0];
     XLSX.writeFile(workbook, `assessments_${timestamp}.xlsx`);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this assessment?')) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('assessments')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      alert('Failed to delete assessment');
+      console.error(error);
+    } else {
+      loadAssessments();
+    }
   };
 
   return (
@@ -307,6 +325,7 @@ export function Dashboard() {
                         Location <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
+                    <th className="text-left px-4 py-3 text-xs font-semibold text-slate-700 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
@@ -335,6 +354,15 @@ export function Dashboard() {
                       </td>
                       <td className="px-4 py-4 text-sm text-slate-600 whitespace-nowrap">{assessment.tester}</td>
                       <td className="px-4 py-4 text-sm text-slate-600 whitespace-nowrap">{assessment.location}</td>
+                      <td className="px-4 py-4">
+                        <button
+                          onClick={() => handleDelete(assessment.id)}
+                          className="text-slate-400 hover:text-red-600 transition"
+                          title="Delete assessment"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
