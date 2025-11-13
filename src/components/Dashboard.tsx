@@ -212,7 +212,7 @@ export function Dashboard() {
               <table className="w-full">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('timestamp_local')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
@@ -220,7 +220,7 @@ export function Dashboard() {
                         Date <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('name_full')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
@@ -228,7 +228,7 @@ export function Dashboard() {
                         Name <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('age')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
@@ -236,16 +236,16 @@ export function Dashboard() {
                         Age <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-slate-700 uppercase">Sex</th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2 text-xs font-semibold text-slate-700 uppercase">Sex</th>
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('tug_s')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        TUG (s) <ArrowUpDown className="w-3 h-3" />
+                        TUG <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('vo2_mlkgmin')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
@@ -253,63 +253,63 @@ export function Dashboard() {
                         VO2 <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('sitreach_in')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        Sit & Reach <ArrowUpDown className="w-3 h-3" />
+                        S&R <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('mtp_pct')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        MTP % <ArrowUpDown className="w-3 h-3" />
+                        MTP <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('grip_r_pct')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        Grip R % <ArrowUpDown className="w-3 h-3" />
+                        Grip R <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('grip_l_pct')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        Grip L % <ArrowUpDown className="w-3 h-3" />
+                        Grip L <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('sway_r_pct')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        Sway R % <ArrowUpDown className="w-3 h-3" />
+                        Sway R <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('sway_l_pct')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        Sway L % <ArrowUpDown className="w-3 h-3" />
+                        Sway L <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('mobility_age')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
                       >
-                        Mobility Age <ArrowUpDown className="w-3 h-3" />
+                        Mob Age <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('tester')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
@@ -317,7 +317,7 @@ export function Dashboard() {
                         Tester <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3">
+                    <th className="text-left px-2 py-2">
                       <button
                         onClick={() => toggleSort('location')}
                         className="flex items-center gap-1 text-xs font-semibold text-slate-700 uppercase hover:text-slate-900"
@@ -325,36 +325,36 @@ export function Dashboard() {
                         Location <ArrowUpDown className="w-3 h-3" />
                       </button>
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-slate-700 uppercase">Actions</th>
+                    <th className="text-left px-2 py-2 text-xs font-semibold text-slate-700 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
                   {filteredAssessments.map((assessment) => (
                     <tr key={assessment.id} className="hover:bg-slate-50 transition">
-                      <td className="px-4 py-4 text-sm text-slate-900 whitespace-nowrap">
+                      <td className="px-2 py-2 text-xs text-slate-900 whitespace-nowrap">
                         {formatDate(assessment.timestamp_local)}
                       </td>
-                      <td className="px-4 py-4 text-sm font-medium text-slate-900 whitespace-nowrap">
+                      <td className="px-2 py-2 text-xs font-medium text-slate-900 whitespace-nowrap">
                         {assessment.name_full}
                       </td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.age}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.sex}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.tug_s?.toFixed(1) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.vo2_mlkgmin?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.sitreach_in?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.mtp_pct?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.grip_r_pct?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.grip_l_pct?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.sway_r_pct?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4 text-sm text-slate-900">{assessment.sway_l_pct?.toFixed(0) ?? '-'}</td>
-                      <td className="px-4 py-4">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-slate-900 text-white">
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.age}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.sex}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.tug_s?.toFixed(1) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.vo2_mlkgmin?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.sitreach_in?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.mtp_pct?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.grip_r_pct?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.grip_l_pct?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.sway_r_pct?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2 text-xs text-slate-900">{assessment.sway_l_pct?.toFixed(0) ?? '-'}</td>
+                      <td className="px-2 py-2">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-slate-900 text-white">
                           {assessment.mobility_age?.toFixed(1) ?? 'N/A'}
                         </span>
                       </td>
-                      <td className="px-4 py-4 text-sm text-slate-600 whitespace-nowrap">{assessment.tester}</td>
-                      <td className="px-4 py-4 text-sm text-slate-600 whitespace-nowrap">{assessment.location}</td>
-                      <td className="px-4 py-4">
+                      <td className="px-2 py-2 text-xs text-slate-600 whitespace-nowrap">{assessment.tester}</td>
+                      <td className="px-2 py-2 text-xs text-slate-600 whitespace-nowrap">{assessment.location}</td>
+                      <td className="px-2 py-2">
                         <button
                           onClick={() => handleDelete(assessment.id)}
                           className="text-slate-400 hover:text-red-600 transition"
