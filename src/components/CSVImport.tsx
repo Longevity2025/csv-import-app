@@ -94,27 +94,14 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
 
           console.log('Inserting assessment data:', assessmentData);
 
-          const { data: sessionData } = await supabase.auth.getSession();
-          const token = sessionData?.session?.access_token;
+          const { error: insertError } = await supabase
+            .from('assessments')
+            .insert(assessmentData);
 
-          const response = await fetch(
-            `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/import-assessment`,
-            {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(assessmentData),
-            }
-          );
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Insert error:', errorData);
-            errors.push(`Failed to import ${row.name_full}: ${errorData.error || 'Unknown error'}`);
+          if (insertError) {
+            console.error('Insert error:', insertError);
+            errors.push(`Failed to import ${row.name_full}: ${insertError.message}`);
           } else {
-            await response.json();
             success.push(1);
           }
         } catch (err) {
