@@ -94,9 +94,27 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
 
           console.log('Inserting assessment data:', assessmentData);
 
-          const { error: insertError } = await supabase
-            .from('assessments')
-            .insert(assessmentData);
+          const { error: insertError } = await supabase.rpc('insert_assessment', {
+            p_timestamp_local: assessmentData.timestamp_local,
+            p_app_version: assessmentData.app_version,
+            p_name_full: assessmentData.name_full,
+            p_tester: assessmentData.tester,
+            p_location: assessmentData.location,
+            p_sex: assessmentData.sex,
+            p_age: assessmentData.age,
+            p_tug_s: assessmentData.tug_s,
+            p_vo2_mlkgmin: assessmentData.vo2_mlkgmin,
+            p_sitreach_in: assessmentData.sitreach_in,
+            p_mtp_pct: assessmentData.mtp_pct,
+            p_mip_pct: assessmentData.mip_pct,
+            p_grip_r_pct: assessmentData.grip_r_pct,
+            p_grip_l_pct: assessmentData.grip_l_pct,
+            p_sway_r_pct: assessmentData.sway_r_pct,
+            p_sway_l_pct: assessmentData.sway_l_pct,
+            p_mobility_age: assessmentData.mobility_age,
+            p_user_id_csv: assessmentData.user_id_csv,
+            p_user_id: assessmentData.user_id,
+          });
 
           if (insertError) {
             console.error('Insert error:', insertError);
