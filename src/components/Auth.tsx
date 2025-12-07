@@ -15,14 +15,20 @@ export function Auth() {
     setError('');
     setLoading(true);
 
-    const { error } = isLogin
-      ? await signIn(email, password)
-      : await signUp(email, password);
+    try {
+      const { error } = isLogin
+        ? await signIn(email, password)
+        : await signUp(email, password);
 
-    if (error) {
-      setError(error.message);
-    } else if (!isLogin) {
-      setError('Account created! Please sign in.');
+      if (error) {
+        console.error('Auth error:', error);
+        setError(`${error.message} (Code: ${error.status || 'unknown'})`);
+      } else if (!isLogin) {
+        setError('Account created! Please sign in.');
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      setError(`Unexpected error: ${err instanceof Error ? err.message : 'Unknown error'}`);
     }
 
     setLoading(false);
