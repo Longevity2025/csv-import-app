@@ -21,9 +21,11 @@ export function Dashboard() {
     if (!user) return;
 
     setLoading(true);
-    const { data, error } = await supabase.rpc('get_assessments', {
-      p_user_id: user.id
-    });
+    const { data, error } = await supabase
+      .from('assessments')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('timestamp_local', { ascending: false });
 
     if (!error && data) {
       setAssessments(data);
@@ -123,10 +125,11 @@ export function Dashboard() {
       return;
     }
 
-    const { error } = await supabase.rpc('delete_assessment', {
-      p_assessment_id: id,
-      p_user_id: user.id
-    });
+    const { error } = await supabase
+      .from('assessments')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', user.id);
 
     if (error) {
       alert('Failed to delete assessment');
