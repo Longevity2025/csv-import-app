@@ -109,17 +109,12 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
             }
           );
 
-          const result = await response.json();
-          const error = response.ok ? null : { message: result.error };
-          const data = response.ok ? result : null;
-
-          console.log('Insert result:', { data, error });
-
-          if (error) {
-            console.error('Insert error:', error);
-            console.error('Error details:', JSON.stringify(error, null, 2));
-            errors.push(`Failed to import ${row.name_full}: ${error.message} (${error.code || 'unknown code'}) ${error.hint || ''}`);
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Insert error:', errorData);
+            errors.push(`Failed to import ${row.name_full}: ${errorData.error || 'Unknown error'}`);
           } else {
+            await response.json();
             success.push(1);
           }
         } catch (err) {
