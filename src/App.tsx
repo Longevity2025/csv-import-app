@@ -1,4 +1,3 @@
-```typescript
 import { useAuth } from './contexts/AuthContext';
 import { Auth } from './components/Auth';
 import { Dashboard } from './components/Dashboard';
@@ -36,4 +35,3 @@ function App() {
 }
 
 export default App;
-```
