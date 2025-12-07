@@ -19,7 +19,10 @@ export function Dashboard() {
 
   const loadAssessments = async () => {
     setLoading(true);
-    const { data, error } = await supabase.rpc('get_assessments');
+    const { data, error } = await supabase
+      .from('assessments')
+      .select('*')
+      .order('timestamp_local', { ascending: false });
 
     if (!error && data) {
       setAssessments(data);
@@ -115,7 +118,10 @@ export function Dashboard() {
       return;
     }
 
-    const { error } = await supabase.rpc('delete_assessment', { p_id: id });
+    const { error } = await supabase
+      .from('assessments')
+      .delete()
+      .eq('id', id);
 
     if (error) {
       alert('Failed to delete assessment');
