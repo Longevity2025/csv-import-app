@@ -18,22 +18,27 @@ export function Dashboard() {
   const { user, signOut } = useAuth();
 
   const loadAssessments = async () => {
+    if (!user) return;
+
     setLoading(true);
-    const { data, error } = await supabase
-      .from('assessments')
-      .select('*')
-      .order('timestamp_local', { ascending: false });
+    const { data, error } = await supabase.rpc('get_assessments', {
+      p_user_id: user.id
+    });
 
     if (!error && data) {
       setAssessments(data);
       setFilteredAssessments(data);
+    } else if (error) {
+      console.error('Error loading assessments:', error);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    loadAssessments();
-  }, []);
+    if (user) {
+      loadAssessments();
+    }
+  }, [user]);
 
   useEffect(() => {
     let filtered = [...assessments];
@@ -114,14 +119,14 @@ export function Dashboard() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this assessment?')) {
+    if (!user || !confirm('Are you sure you want to delete this assessment?')) {
       return;
     }
 
-    const { error } = await supabase
-      .from('assessments')
-      .delete()
-      .eq('id', id);
+    const { error } = await supabase.rpc('delete_assessment', {
+      p_assessment_id: id,
+      p_user_id: user.id
+    });
 
     if (error) {
       alert('Failed to delete assessment');
