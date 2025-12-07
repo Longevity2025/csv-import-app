@@ -82,6 +82,7 @@ export function CSVImport({ onImportComplete }: { onImportComplete: () => void }
             vo2_mlkgmin: row.vo2_mlkgmin ? parseFloat(row.vo2_mlkgmin) : null,
             sitreach_in: row.sitreach_in ? parseFloat(row.sitreach_in) : null,
             mtp_pct: row.mtp_pct ? parseFloat(row.mtp_pct) : null,
+            mip_pct: row.mip_pct ? parseFloat(row.mip_pct) : null,
             grip_r_pct: row.grip_r_pct ? parseFloat(row.grip_r_pct) : null,
             grip_l_pct: row.grip_l_pct ? parseFloat(row.grip_l_pct) : null,
             sway_r_pct: row.sway_r_pct ? parseFloat(row.sway_r_pct) : null,
